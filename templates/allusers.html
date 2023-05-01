@@ -1,0 +1,110 @@
+{% extends "basic.html" %}
+{% block body %}
+
+
+				<div class="content-header">
+					<div class="container-fluid">
+						<div class="row mb-2">
+							<div class="col-sm-6">
+								<h1 class="m-0">All <span class="text-warning">Users</span></h1>
+							</div>
+							<div class="col-sm-6">
+								<ol class="breadcrumb float-sm-right">
+									<li class="breadcrumb-item"><a href="#">Home</a></li>
+									<li class="breadcrumb-item active">All Users</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% if messages %}
+					{% for message in messages %}
+					
+					<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+						{{message}}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						  <span aria-hidden="true">&times;</span>
+						</button>
+					  </div>
+					  {% endfor %}
+					{% endif %}
+
+				<section class="content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12 mx-auto">
+								<div class="card card-primary elevation-1">
+									<table class="table table-hovered">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Name</th>
+												<th>Email</th>
+												<th>Designation</th>
+												<th>Role</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for i in allusers %}
+											<tr>
+												<td>{{forloop.counter}}</td>
+												<td>{{i.name}}</td>
+												<td>{{i.email}}</td>
+												<td>
+													<span class="badge badge-info">{{i.designation}}</span>
+												</td>
+												<td>
+													<span class="badge badge-success">{{i.role}}</span>
+												</td>
+												<td>
+													<a
+														href="/edituser/{{i.id}}"
+														class="btn btn-sm btn-warning"
+													>
+														<i class="fas fa-edit"></i>
+													</a>
+													<button type="button" onclick="fin('{{i.id}}','{{i.email}}')" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal">
+														<i  class="fas fa-trash"></i>
+													</button>
+												</td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <h5 class="modal-title" id="exampleModalLabel">Worning</h5>
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+					<div class="modal-body">
+					  Are you sure you want to delete <p id="usremail"></p>
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					  <a href="" id="deluser"><button type="button" class="btn btn-primary">Delete</button></a>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			
+{% endblock body %}
+{% block js %}
+<script>
+	{% comment %} <!-- Modal --> {% endcomment %}
+function fin(id,email){
+	document.getElementById("usremail").innerHTML = email;
+	document.getElementById("deluser").href = "/deleteuser/"+id+"/";
+}
+</script>
+{% endblock js %}

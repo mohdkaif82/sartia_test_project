@@ -1,0 +1,113 @@
+{% extends "basic.html" %}
+{% block body %}
+	
+	
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">
+							Edit <span class="text-warning">Users</span>
+						</h1>
+					</div>
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item active">Edit Users</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6 mx-auto">
+						<div class="card card-primary elevation-1">
+							{% if messages %}
+							{% for message in messages %}
+							
+							<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+								{{message}}
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								  <span aria-hidden="true">&times;</span>
+								</button>
+							  </div>
+							  {% endfor %}
+							{% endif %}
+							<form method="POST" enctype="multipart/form-data">
+								{% csrf_token %}
+									<div class="card-body">
+										<div class="form-group">
+											<label for="email">Email address</label>
+											<input
+												type="email"
+												class="form-control"
+												id="email"
+												placeholder="Enter email"
+												name='email'
+												value="{{user.email}}"
+											/>
+										</div>
+										<div class="form-group">
+											<label for="name">Name</label>
+											<input
+												type="text"
+												class="form-control"
+												id="name"
+												placeholder="Enter name"
+												name="name"
+												value="{{user.name}}"
+											/>
+										</div>
+										<div class="form-group">
+											<label for="designation">Designation</label>
+											{{form.designation}}
+										</div>
+										<div class="form-group">
+											<label for="role">role</label>
+											{{form.role}}
+											
+										</div>
+										<div class="form-group">
+											<label for="profile">Proflile</label>
+											<div class="input-group">
+												<div class="custom-file">
+													<input
+														type="file"
+														class="custom-file-input"
+														id="profile"
+														name="profile"
+													/>
+													<label class="custom-file-label" for="profile"
+														>Choose file</label
+													>
+												</div>
+											</div>
+										</div>
+										{% comment %} <div class="form-group">
+											<label for="role">Role</label>
+											<select class="form-control" id="role" >
+												<option>Admin</option>
+												<option>User</option>
+												<option>HR</option>
+												<option>Designer</option>
+											</select>
+										</div> {% endcomment %}
+									</div>
+
+								<div class="card-footer">
+									<button type="submit" class="btn btn-primary w-100">
+										Submit
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+			
+			
+{% endblock body %}
