@@ -91,9 +91,8 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 #     },'OPTIONS': {'init_command': 'SET default_storage_engine=INNODB', },
 # }
-DATABASES={
-{'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
-}
+DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+
 
 
 # Password validation
