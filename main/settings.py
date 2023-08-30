@@ -25,7 +25,7 @@ SECRET_KEY = 'q)mtf53ge9^@ofwzh9fl8-et&(wpspfr3c0t+*$693$t=1e3hq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'users.MyUser'
 
