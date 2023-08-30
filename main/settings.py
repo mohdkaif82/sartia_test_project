@@ -77,19 +77,22 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'temp_project',
-    'USER': 'summy',
-        'PASSWORD': 'Root@123',
-        'HOST': 'localhost',
-        'PORT': '3306',
+# DATABASES = {
+#     'default': {
+#     #     'ENGINE': 'django.db.backends.sqlite3',
+#     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     # }
+#     'ENGINE': 'django.db.backends.mysql',
+#     'NAME': 'temp_project',
+#     'USER': 'summy',
+#         'PASSWORD': 'Root@123',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
 
-    },'OPTIONS': {'init_command': 'SET default_storage_engine=INNODB', },
+#     },'OPTIONS': {'init_command': 'SET default_storage_engine=INNODB', },
+# }
+DATABASES={
+{'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
 }
 
 
