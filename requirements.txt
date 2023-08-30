@@ -16,3 +16,4 @@ sqlparse==0.4.4
 tzdata==2023.3
 utils==1.0.1
 watchdog==3.0.0
+gunicorn==19.7.1
